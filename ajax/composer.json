@@ -1,0 +1,15 @@
+{
+    "name": "akirk/tinker",
+    "description": "Tinker",
+    "type": "project",
+    "require": {
+        "lsolesen/pel": "^0.9.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andy Kirk",
+            "email": "andy.kirk@npeu.ox.ac.uk"
+        }
+    ]
+}
