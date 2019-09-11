@@ -39,6 +39,8 @@
                                 var src     = $img.attr('src').replace(window.location.origin, '');
                                 var src_b64 = btoa(src);
 
+                                //console.log(src);
+
                                 // Get the image credit line if there is one:
                                 jQuery.ajax({
                                     url: '/plugins/system/tinker/ajax/get-image-info.php',
@@ -72,7 +74,7 @@
 
                                     // Add/Update the credit line:
                                     jQuery.ajax({
-                                        url: '/plugins/system/tinker/ajax/get-image-info.php?image=' + src_b64,
+                                        url: '/plugins/system/imagemeta/ajax/image-meta.php?image=' + src_b64,
                                         method: "POST",
                                         data: { 'copyright': copyright }
                                     })
