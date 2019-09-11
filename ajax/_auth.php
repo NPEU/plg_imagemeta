@@ -23,9 +23,11 @@ $app->initialise(null, false);
 
 $user    = JFactory::getUser();
 
-#echo '<pre>'; var_dump($user->groups); echo '</pre>';
+#echo '<pre>'; var_dump($_SERVER); echo '</pre>'; exit;
+#echo '<pre>'; var_dump($user->groups); echo '</pre>'; exit;
 
-if (!$user->authorise('core.create', 'com_media')) {
+// Check user permissions or if request was local:
+if (!($user->authorise('core.create', 'com_media') || $_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR'])) {
 
     header('HTTP/1.0 403 Forbidden');
     die(JText::_('JGLOBAL_AUTH_ACCESS_DENIED'));

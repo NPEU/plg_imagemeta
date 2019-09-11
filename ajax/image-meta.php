@@ -95,11 +95,11 @@ if ($copyright != null) {
 #echo '$copyright_text<pre>'; var_dump($copyright_text); echo '</pre>'; exit;
 #echo '<pre>'; var_dump(empty($new_copyright)); echo '</pre>'; exit;
 #echo '<pre>'; var_dump($_POST); echo '</pre>'; exit;
+#echo '<pre>'; var_dump(isset($_POST['copyright'])); echo '</pre>'; exit;
 
 
 // Right so we've done the common stuff. Are we GETing or POSTing?
-// Change to POST
-if (empty($_POST['copyright'])) {
+if (!isset($_POST['copyright'])) {
     // We're GETing:
     $message = 'Image info retrieved.';
     $success = true;
@@ -111,9 +111,11 @@ if (empty($_POST['copyright'])) {
     $new_copyright = $_POST['copyright'];
     
     // Validate new_copyright here:
+    $valid = true;
     // @TODO
     
-    if (!empty($new_copyright)) {
+    if ($valid) {
+        
         if ($copyright == null) {
 
             $copyright = new PelEntryCopyright(PelTag::COPYRIGHT, $new_copyright);
