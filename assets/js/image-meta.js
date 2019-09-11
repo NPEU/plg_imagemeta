@@ -29,6 +29,7 @@
                         .prependTo($thumb)
                         .webuiPopover({
                             title:       'Attribution (Credit line)',
+                            placement:   'auto-bottom',
                             content:     popover.join("\n"),
                             closeable:   true,
                             dismissible: true,
