@@ -43,7 +43,7 @@
 
                                 // Get the image credit line if there is one:
                                 jQuery.ajax({
-                                    url: '/plugins/system/tinker/ajax/get-image-info.php',
+                                    url: '/plugins/system/imagemeta/ajax/image-meta.php',
                                     data: { 'image': src_b64 },
                                     dataType: "json"
                                 })
