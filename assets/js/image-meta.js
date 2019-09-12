@@ -62,6 +62,9 @@
                                     });
                                     $element.find('.credit-preview')
                                     .html(copyright_html);
+
+                                    // Adjust parent iframe height (bit of a hack):
+                                    jQuery(window.frameElement).height(document.documentElement.scrollHeight);
                                 });
 
 
