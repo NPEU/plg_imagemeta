@@ -18,7 +18,7 @@
         <!-- Note: No spaces or linebreaks allowed between the server tags -->
         <server type="extension" name="NPEU: plg_imagemeta Update Site">https://raw.githubusercontent.com/NPEU/plg_imagemeta/master/update-manifest.xml</server>
     </updateservers>
-    
+
     <files>
         <filename plugin="imagemeta">imagemeta.php</filename>
         <filename>index.html</filename>
@@ -26,5 +26,19 @@
         <folder>assets</folder>
         <folder>language</folder>
     </files>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="folder"
+                    type="text"
+                    label="PLG_SYSTEM_IMAGEMETA_CONFIG_FOLDER_LABEL"
+                    description="PLG_SYSTEM_IMAGEMETA_CONFIG_FOLDER_DESC"
+                    default=""
+                />
+            </fieldset>
+        </fields>
+    </config>
 
 </extension>
