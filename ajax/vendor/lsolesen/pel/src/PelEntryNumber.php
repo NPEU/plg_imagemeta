@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
 
 /**
@@ -43,7 +44,6 @@ namespace lsolesen\pel;
  */
 abstract class PelEntryNumber extends PelEntry
 {
-
     /**
      * The value held by this entry.
      *
@@ -167,7 +167,7 @@ abstract class PelEntryNumber extends PelEntry
                 Pel::maybeThrow(new PelOverflowException($n, $this->min, $this->max));
             }
         } else {
-            for ($i = 0; $i < $this->dimension; $i ++) {
+            for ($i = 0; $i < $this->dimension; $i++) {
                 if ($n[$i] < $this->min || $n[$i] > $this->max) {
                     Pel::maybeThrow(new PelOverflowException($n[$i], $this->min, $this->max));
                 }
@@ -223,11 +223,11 @@ abstract class PelEntryNumber extends PelEntry
     public function getBytes($o)
     {
         $bytes = '';
-        for ($i = 0; $i < $this->components; $i ++) {
+        for ($i = 0; $i < $this->components; $i++) {
             if ($this->dimension == 1) {
                 $bytes .= $this->numberToBytes($this->value[$i], $o);
             } else {
-                for ($j = 0; $j < $this->dimension; $j ++) {
+                for ($j = 0; $j < $this->dimension; $j++) {
                     $bytes .= $this->numberToBytes($this->value[$i][$j], $o);
                 }
             }
@@ -275,7 +275,7 @@ abstract class PelEntryNumber extends PelEntry
         }
 
         $str = $this->formatNumber($this->value[0]);
-        for ($i = 1; $i < $this->components; $i ++) {
+        for ($i = 1; $i < $this->components; $i++) {
             $str .= ($brief ? ' ' : ', ');
             $str .= $this->formatNumber($this->value[$i]);
         }

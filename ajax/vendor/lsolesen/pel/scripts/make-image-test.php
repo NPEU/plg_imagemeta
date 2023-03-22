@@ -96,7 +96,7 @@ function ifdToTest($name, $number, PelIfd $ifd)
         println('%s%d = %s%d->getSubIfd(%d); // IFD %s', $sub_name, $n, $name, $number, $type, $sub_ifd->getName());
         println('$this->assertInstanceOf(\'PelIfd\', %s%d);', $sub_name, $n);
         ifdToTest($sub_name, $n, $sub_ifd);
-        $n ++;
+        $n++;
     }
 
     println();
@@ -233,7 +233,7 @@ if (count($exceptions) == 0) {
     println('$this->assertTrue(count(Pel::getExceptions()) == 0);');
 } else {
     println('$exceptions = Pel::getExceptions();');
-    for ($i = 0; $i < count($exceptions); $i ++) {
+    for ($i = 0; $i < count($exceptions); $i++) {
         println('$this->assertInstanceOf(\'%s\', $exceptions[%d]);', $i, get_class($exceptions[$i]));
 
         println('$this->assertEquals($exceptions[%d]->getMessage(),', $i);

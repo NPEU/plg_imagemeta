@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
 
 /**
@@ -68,7 +69,6 @@ namespace lsolesen\pel;
  */
 class PelEntryTime extends PelEntryAscii
 {
-
     /**
      * Constant denoting a UNIX timestamp.
      */
@@ -185,10 +185,11 @@ class PelEntryTime extends PelEntryAscii
                 throw new PelInvalidArgumentException(
                     'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' .
                          'got %d.',
-                        self::UNIX_TIMESTAMP,
-                        self::EXIF_STRING,
-                        self::JULIAN_DAY_COUNT,
-                        $type);
+                    self::UNIX_TIMESTAMP,
+                    self::EXIF_STRING,
+                    self::JULIAN_DAY_COUNT,
+                    $type
+                );
         }
     }
 
@@ -222,7 +223,7 @@ class PelEntryTime extends PelEntryAscii
                 /* Clean the timestamp: some timestamps are broken other
                  * separators than ':' and ' '. */
                 $d = preg_split('/[^0-9]+/', $timestamp);
-                for ($i = 0; $i < 6; $i ++) {
+                for ($i = 0; $i < 6; $i++) {
                     if (empty($d[$i])) {
                         $d[$i] = 0;
                     }
@@ -240,10 +241,11 @@ class PelEntryTime extends PelEntryAscii
                 throw new PelInvalidArgumentException(
                     'Expected UNIX_TIMESTAMP (%d), ' . 'EXIF_STRING (%d), or ' . 'JULIAN_DAY_COUNT (%d) for $type, ' .
                          'got %d.',
-                        self::UNIX_TIMESTAMP,
-                        self::EXIF_STRING,
-                        self::JULIAN_DAY_COUNT,
-                        $type);
+                    self::UNIX_TIMESTAMP,
+                    self::EXIF_STRING,
+                    self::JULIAN_DAY_COUNT,
+                    $type
+                );
         }
 
         /*

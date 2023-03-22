@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
 
 /**
@@ -31,7 +32,6 @@ namespace lsolesen\pel;
  */
 class PelDataWindow
 {
-
     /**
      * The data held by this window.
      *
@@ -166,7 +166,8 @@ class PelDataWindow
                 'Window [%d, %d] does ' . 'not fit in window [0, %d]',
                 $start,
                 $this->size,
-                $this->size);
+                $this->size
+            );
         }
         $this->start += $start;
         $this->size -= $start;
@@ -189,7 +190,8 @@ class PelDataWindow
             throw new PelDataWindowWindowException(
                 'Window [0, %d] ' . 'does not fit in window [0, %d]',
                 $size,
-                $this->size);
+                $this->size
+            );
         }
         $this->size = $size;
     }
@@ -538,8 +540,8 @@ class PelDataWindow
         $offset += $this->start;
 
         /* Check each character, return as soon as the answer is known. */
-        for ($i = 0; $i < $s; $i ++) {
-            if ($this->data{$offset + $i} != $str{$i}) {
+        for ($i = 0; $i < $s; $i++) {
+            if ($this->data[$offset + $i] != $str[$i]) {
                 return false;
             }
         }
@@ -562,6 +564,7 @@ class PelDataWindow
             $this->size,
             $this->start,
             $this->start + $this->size,
-            strlen($this->data));
+            strlen($this->data)
+        );
     }
 }

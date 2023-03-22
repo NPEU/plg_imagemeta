@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -29,10 +30,8 @@ class Bug2979466Test extends \PHPUnit_Framework_TestCase
     function testThisDoesNotWorkAsExpected()
     {
         $file = dirname(__FILE__) . '/images/bug2979466.jpg';
-        // TODO Out of memory
-        $this->markTestIncomplete(
-          'This test fails and should be fixed.'
-        );
+// TODO Out of memory
+        $this->markTestIncomplete('This test fails and should be fixed.');
         try {
             require_once 'PelJpeg.php';
             $jpeg = new PelJpeg($file);

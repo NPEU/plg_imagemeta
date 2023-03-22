@@ -1,4 +1,5 @@
 <?php
+
 /*
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -36,7 +37,6 @@ namespace lsolesen\pel;
  */
 class PelJpegInvalidMarkerException extends PelException
 {
-
     /**
      * Construct a new invalid marker exception.
      * The exception will contain a message describing the error,

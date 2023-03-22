@@ -110,7 +110,7 @@ foreach ($argv as $file) {
     do {
         $new = gmdate('Y:m:d-H:i:s', $time) . strchr($file, '.');
         println('Trying file name %s', $new);
-        $time ++;
+        $time++;
     } while (file_exists($new));
 
     rename($file, $new);

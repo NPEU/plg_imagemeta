@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
 
 /**
@@ -64,7 +65,6 @@ namespace lsolesen\pel;
  */
 abstract class PelEntry
 {
-
     /**
      * Type of IFD containing this tag.
      *

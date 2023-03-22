@@ -23,12 +23,12 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 use lsolesen\pel\PelEntryUserComment;
 use PHPUnit\Framework\TestCase;
 
 class PelEntryUserCommentTest extends TestCase
 {
-
     function testUsercomment()
     {
         $entry = new PelEntryUserComment();

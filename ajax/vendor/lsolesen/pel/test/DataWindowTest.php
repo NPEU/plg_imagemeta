@@ -29,7 +29,6 @@ use lsolesen\pel\PelDataWindowOffsetException;
 
 class DataWindowTest extends \PHPUnit_Framework_TestCase
 {
-
     function testReadBytes()
     {
         $window = new PelDataWindow('abcdefgh');

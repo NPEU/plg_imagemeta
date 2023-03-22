@@ -22,8 +22,8 @@
  * Boston, MA 02110-1301 USA
  */
 
-use \lsolesen\pel\Pel;
-use \lsolesen\pel\PelJpeg;
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelJpeg;
 
 class CanonIxusIITest extends \PHPUnit_Framework_TestCase
 {

@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
 
     /**
@@ -56,7 +57,6 @@ namespace lsolesen\pel;
  */
 class PelTag
 {
-
     /**
      * Interoperability index.
      *
@@ -1341,7 +1341,7 @@ class PelTag
     /**
      * Values for tags short names.
      */
-    protected static $exifTagsShort= array(
+    protected static $exifTagsShort = array(
         self::INTEROPERABILITY_INDEX         => 'InteroperabilityIndex',
         self::INTEROPERABILITY_VERSION       => 'InteroperabilityVersion',
         self::IMAGE_WIDTH                    => 'ImageWidth',

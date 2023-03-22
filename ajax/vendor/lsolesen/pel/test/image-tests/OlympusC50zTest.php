@@ -27,7 +27,6 @@ use lsolesen\pel\PelJpeg;
 
 class OlympusC50zTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testRead()
     {
         Pel::clearExceptions();

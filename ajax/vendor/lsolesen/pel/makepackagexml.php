@@ -1,4 +1,5 @@
 <?php
+
 /**
  * package.xml generation script
  *
@@ -15,13 +16,12 @@
  * @version @package-version@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public
  */
-require_once 'PEAR/PackageFileManager2.php';
 
+require_once 'PEAR/PackageFileManager2.php';
 $version = '0.9.2';
 $stability = 'beta';
 $notes = '* initial release as a PEAR package';
 $url = 'http://downloads.sf.net/pel/PEL-' . $version . '.tgz';
-
 PEAR::setErrorHandling(PEAR_ERROR_DIE);
 $pfm = new PEAR_PackageFileManager2();
 $pfm->setOptions(array(
@@ -52,7 +52,6 @@ $pfm->setOptions(array(
     ),
     'simpleoutput' => true
 ));
-
 $pfm->setPackage('PEL');
 $pfm->setSummary('The PHP Exif Library (PEL) lets you fully manipulate Exif (Exchangeable Image File Format) data.');
 $pfm->setDescription('The PHP Exif Library (PEL) lets you fully manipulate Exif (Exchangeable Image File Format) data. This is the data that digital cameras place in their images, such as the date and time, shutter speed, ISO value and so on.
@@ -62,22 +61,17 @@ $pfm->setUri($url);
 $pfm->setLicense('GPL License', 'http://www.gnu.org/licenses/gpl.html');
 $pfm->addMaintainer('lead', 'mgeisler', 'Martin Geisler', 'mgeisler@mgeisler.net');
 $pfm->addMaintainer('helper', 'lsolesen', 'Lars Olesen', 'lars@legestue.net');
-
 $pfm->setPackageType('php');
-
 $pfm->setAPIVersion($version);
 $pfm->setReleaseVersion($version);
 $pfm->setAPIStability($stability);
 $pfm->setReleaseStability($stability);
 $pfm->setNotes($notes);
 $pfm->addRelease();
-
 $pfm->clearDeps();
 $pfm->setPhpDep('5.0.0');
 $pfm->setPearinstallerDep('1.5.0');
-
 $pfm->generateContents();
-
 if (isset($_GET['make']) || (isset($_SERVER['argv']) && $_SERVER['argv'][1] == 'make')) {
     if ($pfm->writePackageFile()) {
         exit('package created');

@@ -23,16 +23,16 @@
  * Boston, MA 02110-1301 USA
  */
 
-use \lsolesen\pel\PelEntryByte;
-use \lsolesen\pel\Pel;
-use \lsolesen\pel\PelEntrySByte;
-use \lsolesen\pel\PelEntryShort;
-use \lsolesen\pel\PelEntrySShort;
-use \lsolesen\pel\PelEntryLong;
-use \lsolesen\pel\PelEntrySLong;
-use \lsolesen\pel\PelEntryRational;
-use \lsolesen\pel\PelEntrySRational;
-use \lsolesen\pel\PelOverflowException;
+use lsolesen\pel\PelEntryByte;
+use lsolesen\pel\Pel;
+use lsolesen\pel\PelEntrySByte;
+use lsolesen\pel\PelEntryShort;
+use lsolesen\pel\PelEntrySShort;
+use lsolesen\pel\PelEntryLong;
+use lsolesen\pel\PelEntrySLong;
+use lsolesen\pel\PelEntryRational;
+use lsolesen\pel\PelEntrySRational;
+use lsolesen\pel\PelOverflowException;
 
 abstract class NumberTest extends \PHPUnit_Framework_TestCase
 {
@@ -125,7 +125,6 @@ abstract class NumberTest extends \PHPUnit_Framework_TestCase
 
 class ByteTestCase extends NumberTest
 {
-
     public function __construct()
     {
         $this->num = new PelEntryByte(42);
@@ -135,7 +134,6 @@ class ByteTestCase extends NumberTest
 
 class SByteTestCase extends NumberTest
 {
-
     public function __construct()
     {
         $this->num = new PelEntrySByte(42);
@@ -145,7 +143,6 @@ class SByteTestCase extends NumberTest
 
 class ShortTestCase extends NumberTest
 {
-
     public function __construct()
     {
         $this->num = new PelEntryShort(42);
@@ -155,7 +152,6 @@ class ShortTestCase extends NumberTest
 
 class SShortTestCase extends NumberTest
 {
-
     public function __construct()
     {
 
@@ -166,7 +162,6 @@ class SShortTestCase extends NumberTest
 
 class LongTestCase extends NumberTest
 {
-
     public function __construct()
     {
 
@@ -177,7 +172,6 @@ class LongTestCase extends NumberTest
 
 class SLongTestCase extends NumberTest
 {
-
     public function __construct()
     {
 
@@ -327,7 +321,6 @@ class RationalTestCase extends \PHPUnit_Framework_TestCase
 
 class SRationalTestCase extends \PHPUnit_Framework_TestCase
 {
-
     public function __construct()
     {
 

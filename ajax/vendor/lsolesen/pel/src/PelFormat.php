@@ -1,4 +1,5 @@
 <?php
+
 /*
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -44,7 +45,6 @@ namespace lsolesen\pel;
  */
 class PelFormat
 {
-
     /**
      * Unsigned byte.
      *
@@ -54,8 +54,7 @@ class PelFormat
      * Modelled with the {@link PelEntryByte} class.
      */
     const BYTE = 1;
-
-    /**
+/**
      * ASCII string.
      *
      * Each component will be an ASCII character.
@@ -63,8 +62,7 @@ class PelFormat
      * Modelled with the {@link PelEntryAscii} class.
      */
     const ASCII = 2;
-
-    /**
+/**
      * Unsigned short.
      *
      * Each component will be an unsigned 16-bit integer with a value
@@ -73,8 +71,7 @@ class PelFormat
      * Modelled with the {@link PelEntryShort} class.
      */
     const SHORT = 3;
-
-    /**
+/**
      * Unsigned long.
      *
      * Each component will be an unsigned 32-bit integer with a value
@@ -83,8 +80,7 @@ class PelFormat
      * Modelled with the {@link PelEntryLong} class.
      */
     const LONG = 4;
-
-    /**
+/**
      * Unsigned rational number.
      *
      * Each component will consist of two unsigned 32-bit integers
@@ -94,8 +90,7 @@ class PelFormat
      * Modelled with the {@link PelEntryRational} class.
      */
     const RATIONAL = 5;
-
-    /**
+/**
      * Signed byte.
      *
      * Each component will be a signed 8-bit integer with a value
@@ -104,8 +99,7 @@ class PelFormat
      * Modelled with the {@link PelEntrySByte} class.
      */
     const SBYTE = 6;
-
-    /**
+/**
      * Undefined byte.
      *
      * Each component will be a byte with no associated interpretation.
@@ -113,8 +107,7 @@ class PelFormat
      * Modelled with the {@link PelEntryUndefined} class.
      */
     const UNDEFINED = 7;
-
-    /**
+/**
      * Signed short.
      *
      * Each component will be a signed 16-bit integer with a value
@@ -123,8 +116,7 @@ class PelFormat
      * Modelled with the {@link PelEntrySShort} class.
      */
     const SSHORT = 8;
-
-    /**
+/**
      * Signed long.
      *
      * Each component will be a signed 32-bit integer with a value
@@ -133,8 +125,7 @@ class PelFormat
      * Modelled with the {@link PelEntrySLong} class.
      */
     const SLONG = 9;
-
-    /**
+/**
      * Signed rational number.
      *
      * Each component will consist of two signed 32-bit integers
@@ -144,22 +135,19 @@ class PelFormat
      * Modelled with the {@link PelEntrySRational} class.
      */
     const SRATIONAL = 10;
-
-    /**
+/**
      * Floating point number.
      *
      * Entries with this format are not currently implemented.
      */
     const FLOAT = 11;
-
-    /**
+/**
      * Double precision floating point number.
      *
      * Entries with this format are not currently implemented.
      */
     const DOUBLE = 12;
-
-    /**
+/**
      * Values for format's short names
      */
     protected static $formatName = array(
@@ -176,7 +164,6 @@ class PelFormat
         self::DOUBLE => 'Double',
         self::UNDEFINED => 'Undefined'
     );
-
     protected static $formatLength = array(
         self::ASCII => 1,
         self::BYTE => 1,
@@ -191,8 +178,7 @@ class PelFormat
         self::DOUBLE => 8,
         self::UNDEFINED => 1
     );
-
-    /**
+/**
      * Returns the name of a format like 'Ascii' for the {@link ASCII} format
      *
      * @param integer $type

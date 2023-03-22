@@ -27,7 +27,6 @@ use lsolesen\pel\PelConvert;
 
 class ConvertTest extends \PHPUnit_Framework_TestCase
 {
-
     private $bytes = "\x00\x00\x00\x00\x01\x23\x45\x67\x89\xAB\xCD\xEF\xFF\xFF\xFF\xFF";
 
     function testLongLittle()

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PEL: PHP Exif Library.
  * A library with support for reading and
@@ -30,7 +31,6 @@ use lsolesen\pel\PelTag;
 class GH16Test extends \PHPUnit_Framework_TestCase
 {
     protected $file;
-
     function setUp()
     {
         $this->file = dirname(__FILE__) . '/images/gh-16-tmp.jpg';
@@ -46,15 +46,11 @@ class GH16Test extends \PHPUnit_Framework_TestCase
     function testThisDoesNotWorkAsExpected()
     {
         $subject = "Превед, медвед!";
-
         $data = new PelDataWindow(file_get_contents($this->file));
-
         if (PelJpeg::isValid($data)) {
-
             $jpeg = new PelJpeg();
             $jpeg->load($data);
             $exif = $jpeg->getExif();
-
             if (null === $exif) {
                 $exif = new PelExif();
                 $jpeg->setExif($exif);
@@ -63,7 +59,6 @@ class GH16Test extends \PHPUnit_Framework_TestCase
             }
 
             $tiff = $exif->getTiff();
-
             $ifd0 = $tiff->getIfd();
             if (null === $ifd0) {
                 $ifd0 = new PelIfd(PelIfd::IFD0);
@@ -71,9 +66,7 @@ class GH16Test extends \PHPUnit_Framework_TestCase
             }
         }
         $ifd0->addEntry(new PelEntryWindowsString(PelTag::XP_SUBJECT, $subject));
-
         file_put_contents($this->file, $jpeg->getBytes());
-
         $jpeg = new PelJpeg($this->file);
         $exif = $jpeg->getExif();
         $tiff = $exif->getTiff();

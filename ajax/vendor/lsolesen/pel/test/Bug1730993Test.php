@@ -33,7 +33,7 @@ class Bug1730993Test extends \PHPUnit_Framework_TestCase
         $bigfile = dirname(__FILE__) . '/images/bug1730993_large.jpg';
         // TODO: Should not throw exception
         $this->markTestIncomplete(
-          'This test fails and should be fixed.'
+            'This test fails and should be fixed.'
         );
         try {
             require_once 'PelJpeg.php';

@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
 
 /**
@@ -72,7 +73,6 @@ namespace lsolesen\pel;
  */
 class PelEntryWindowsString extends PelEntry
 {
-
     /**
      * The string hold by this entry.
      *
@@ -123,8 +123,8 @@ class PelEntryWindowsString extends PelEntry
         $this->components = 2 * ($l + 1);
         $this->str = $str;
         $this->bytes = '';
-        for ($i = 0; $i < $l; $i ++) {
-            $this->bytes .= $str{$i} . chr(0x00);
+        for ($i = 0; $i < $l; $i++) {
+            $this->bytes .= $str[$i] . chr(0x00);
         }
 
         $this->bytes .= chr(0x00) . chr(0x00);

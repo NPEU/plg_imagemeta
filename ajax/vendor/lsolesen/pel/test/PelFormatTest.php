@@ -23,13 +23,13 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 use PHPUnit\Framework\TestCase;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelFormat;
 
 class PelFormatTest extends TestCase
 {
-
     function testNames()
     {
         $pelFormat = new PelFormat();

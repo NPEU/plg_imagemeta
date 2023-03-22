@@ -23,6 +23,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 use PHPUnit\Framework\TestCase;
 use lsolesen\pel\PelJpegMarker;
 use lsolesen\pel\Pel;
@@ -30,7 +31,6 @@ use lsolesen\pel\PelJpegInvalidMarkerException;
 
 class PelJpegMarkerTest extends TestCase
 {
-
     function testNames()
     {
         $jpegMarker = new PelJpegMarker();

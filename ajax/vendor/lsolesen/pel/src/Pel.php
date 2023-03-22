@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
 
 /**
@@ -38,7 +39,6 @@ namespace lsolesen\pel;
  */
 class Pel
 {
-
     /**
      * Flag that controls if dgettext can be used.
      * Is set to true or fals at the first access

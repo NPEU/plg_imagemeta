@@ -30,7 +30,6 @@ use PHPUnit\Framework\TestCase;
 
 class AsciiTest extends TestCase
 {
-
     function testConstructorWithNoValues()
     {
         if (version_compare(PHP_VERSION, '7.1.0') >= 0) {

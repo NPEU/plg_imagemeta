@@ -29,22 +29,21 @@ use lsolesen\pel\PelTiff;
 use lsolesen\pel\Pel;
 use lsolesen\pel\PelTag;
 
-
 class GH77Test extends \PHPUnit_Framework_TestCase
 {
     function testReturnModul()
     {
-        
+
         $file = dirname(__FILE__) . '/images/gh-77.jpg';
 
-		$input_jpeg = new PelJpeg($file);
-		$app1 = $input_jpeg->getExif();
+        $input_jpeg = new PelJpeg($file);
+        $app1 = $input_jpeg->getExif();
 
-		$tiff = $app1->getTiff();
-		$ifd0 = $tiff->getIfd();
-		
-		$model = $ifd0->getEntry(PelTag::MODEL);
-		
-		$this->assertEquals($model->getValue(), "Canon EOS 5D Mark III");
+        $tiff = $app1->getTiff();
+        $ifd0 = $tiff->getIfd();
+
+        $model = $ifd0->getEntry(PelTag::MODEL);
+
+        $this->assertEquals($model->getValue(), "Canon EOS 5D Mark III");
     }
 }

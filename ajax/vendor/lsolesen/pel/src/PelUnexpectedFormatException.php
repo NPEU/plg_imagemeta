@@ -22,6 +22,7 @@
  * Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
+
 namespace lsolesen\pel;
 
 /**
@@ -51,7 +52,6 @@ namespace lsolesen\pel;
  */
 class PelUnexpectedFormatException extends PelEntryException
 {
-
     /**
      * Construct a new exception indicating an invalid format.
      *
@@ -73,7 +73,8 @@ class PelUnexpectedFormatException extends PelEntryException
             'Unexpected format found for %s tag: PelFormat::%s. Expected PelFormat::%s instead.',
             PelTag::getName($type, $tag),
             strtoupper(PelFormat::getName($found)),
-            strtoupper(PelFormat::getName($expected)));
+            strtoupper(PelFormat::getName($expected))
+        );
         $this->tag = $tag;
         $this->type = $type;
     }
