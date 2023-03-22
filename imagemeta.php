@@ -22,7 +22,7 @@ class plgSystemImageMeta extends JPlugin
     public function onBeforeRender()
     {
         $app = JFactory::getApplication();
-        if (!$app->isAdmin()) {
+        if (!$app->isClient('administrator')) {
             return; // Only run in admin
         }
 

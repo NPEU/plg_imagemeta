@@ -11,6 +11,19 @@ require_once JPATH_BASE . '/includes/framework.php';
 $app = JFactory::getApplication('administrator');
 $app->initialise(null, false);
 
+/*
+
+// Boot the DI container.
+$container = \Joomla\CMS\Factory::getContainer();
+
+// Alias the session service key to the web session service.
+$container->alias(\Joomla\Session\SessionInterface::class, 'session.web.site');
+
+// Get the application.
+$app      = $container->get(\Joomla\CMS\Application\AdministratorApplication::class);
+
+*/
+
 //// These don't appear to be needed but keep for reference:
 #JPluginHelper::importPlugin('system');
 #JPluginHelper::importPlugin('user');
