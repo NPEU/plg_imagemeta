@@ -62,7 +62,7 @@ if (PelJpeg::isValid($data)) {
         $exif = new PelExif();
         $jpeg->setExif($exif);
         #echo '<pre>'; var_dump($exif); echo '</pre>'; exit;
-
+        
         $tiff = new PelTiff();
         $exif->setTiff($tiff);
         #echo '<pre>'; var_dump($exif); echo '</pre>'; exit;
@@ -109,13 +109,13 @@ if (!isset($_POST['copyright'])) {
 } else {
     // We're POSTing:
     $new_copyright = $_POST['copyright'];
-
+    
     // Validate new_copyright here:
     $valid = true;
     // @TODO
-
+    
     if ($valid) {
-
+        
         if ($copyright == null) {
 
             $copyright = new PelEntryCopyright(PelTag::COPYRIGHT, $new_copyright);
@@ -131,12 +131,12 @@ if (!isset($_POST['copyright'])) {
         #$output = preg_replace('#\.?[\d]*\.jpg$#', '.' . time() . '.jpg', $image_path);
         $output = $image_path;
         $file->saveFile($output);
-
+        
         $message = 'Image info updated.';
         $success = true;
         send_response($app, $success, $message, $return_data);
         exit;
-
+        
         #echo '<pre>'; var_dump($copyright->getValue()[0]); echo '</pre>'; #exit;
         #echo '<pre>'; var_dump($output); echo '</pre>'; #exit;
     } else {
