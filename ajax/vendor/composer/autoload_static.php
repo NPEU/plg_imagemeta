@@ -16,7 +16,7 @@ class ComposerStaticInit8abd40ca9f71afc56063823a48c0ecb5
     public static $prefixDirsPsr4 = array (
         'lsolesen\\pel\\' => 
         array (
-            0 => __DIR__ . '/..' . '/lsolesen/pel/src',
+            0 => __DIR__ . '/..' . '/fileeye/pel/src',
         ),
     );
 

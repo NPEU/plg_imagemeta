@@ -1,4 +1,125 @@
-(function() {
+const IMAGE_META = {
+    open: function (btn) {
+        //console.log('OPEN');
+
+        // Get existing meta data from image:
+        var img =  btn.closest('.media-browser-image').querySelector('img.image-cropped');
+
+        var src = img.src.replace(window.location.origin, '').replace('/media/cache/com_media/thumbs', '').replace(/\?.*/, '');
+        var src_b64 = btoa(src);
+
+        // set up a request
+        var request = new XMLHttpRequest();
+
+        // keep track of the request
+        request.onreadystatechange = function() {
+            // check if the response data send back to us
+            if(request.readyState === 4) {
+                // uncomment the line below to see the request
+                console.log(request);
+                // check if the request is successful
+                if (request.status === 200) {
+                    var response = JSON.parse(request.response);
+                    var copyright = response.data.copyright;
+                    var converter = new showdown.Converter(),
+                        copyright_html = converter.makeHtml(copyright);
+                    var input = document.querySelector('#imageMetaModal .credit-input');
+                    input.value = copyright;
+
+                    var hidden_input = document.querySelector('#imageMetaModal .credit_for_image');
+                    hidden_input.value = src_b64;
+
+                    var preview = document.querySelector('#imageMetaModal .credit-preview');
+                    preview.innerHTML = copyright_html;
+                } else {
+                    // otherwise display an error message
+                    console.log ('An error occurred: ' +  request.status + ' ' + request.statusText);
+                }
+            }
+        }
+
+        // specify the type of request
+        request.open('GET', '/plugins/system/imagemeta/ajax/image-meta.php?image=' + src_b64);
+        request.send();
+
+        //var val = input.value;
+        //input.value = '';
+    },
+
+    close: function (btn) {
+        //console.log('CLOSE');
+        var input = btn.closest('.modal-content').querySelector('.credit-input');
+        input.value = '';
+
+        var preview = document.querySelector('#imageMetaModal .credit-preview');
+        preview.innerHTML = '';
+    },
+
+    save: function (btn) {
+        console.log('SAVE');
+        var input = btn.closest('.modal-content').querySelector('.credit-input');
+        var copyright = input.value;
+        console.log(copyright);
+
+        var hidden_input = document.querySelector('#imageMetaModal .credit_for_image');
+        src_b64 = hidden_input.value;
+        console.log(src_b64);
+
+        // set up a request
+        var request = new XMLHttpRequest();
+
+        // keep track of the request
+        request.onreadystatechange = function() {
+            // check if the response data send back to us
+            if(request.readyState === 4) {
+                // uncomment the line below to see the request
+                console.log(request);
+                // check if the request is successful
+                if (request.status === 200) {
+                    //console.log('Saved');
+                    Joomla.renderMessages({
+                        ['message']: ['Attribution saved.']
+                    }, undefined, true, 3000);
+                } else {
+                    // otherwise display an error message
+                    console.log('An error occurred: ' + request.status + ' ' + request.statusText);
+                    Joomla.renderMessages({
+                        ['error']: ['Something went wrong.']
+                    }, undefined, true, 3000);
+                }
+            }
+        }
+
+        // specify the type of request
+        request.open('POST', '/plugins/system/imagemeta/ajax/image-meta.php?image=' + src_b64);
+        request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        var data = {'copyright': copyright};
+        data = Object.keys(data).map(
+            function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
+        ).join('&');
+
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send(data);
+
+        /*
+        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        request.send(JSON.stringify({ 'copyright': copyright }));
+        */
+
+    },
+
+    preview: function (input) {
+        //console.log('PREVIEW');
+
+        var converter = new showdown.Converter(),
+            copyright_html = converter.makeHtml(input.value),
+            preview = document.querySelector('#imageMetaModal .credit-preview');
+        preview.innerHTML = copyright_html;
+    }
+};
+
+(function () {
     var ready = function(fn) {
         if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
             fn();
@@ -7,11 +128,34 @@
         }
     }
 
-	var image_meta = {
+    var image_meta = {
 
-        init: function() {
+        init: function () {
+            console.log('Image Meta');
 
-            jQuery(function(){
+            const com_media = document.getElementById('com-media');
+            if (com_media) {
+                // Watch this for changes and then fix all visible filenames:
+                const config = { attributes: false, childList: true, subtree: true };
+
+                const callback = (mutationList, observer) => {
+                    observer.disconnect();
+                    var elements_1 = com_media.querySelectorAll('.media-browser-image');
+                    Array.prototype.forEach.call(elements_1, function (el, i) {
+                        //console.log(el);
+                        var t = el.querySelector('.media-browser-actions');
+                        t.insertAdjacentHTML('beforebegin', '<div class="media-browser-image-meta"><button type="button" class="action-toggle" aria-label="Manage attibution: newcastle-at-night.jpg" title="Manage attibution: newcastle-at-night.jpg" data-bs-toggle="modal" data-bs-target="#imageMetaModal" onclick="IMAGE_META.open(this);"><span class="image-browser-action  icon-copyright-h" aria-hidden="true"></span></button><!--v-if--></div>');
+                        //el.innerHTML += '<div class="media-browser-image-meta"><button type="button" class="action-toggle" aria-label="Manage attibution: newcastle-at-night.jpg" title="Manage attibution: newcastle-at-night.jpg"><span class="image-browser-action  icon-copyright-h" aria-hidden="true"></span></button><!--v-if--></div>'
+                        //el.innerHTML += '<div  class="media-browser-image-meta">TEST</div>';
+                    });
+                    observer.observe(com_media, config);
+                };
+
+                const observer = new MutationObserver(callback);
+                observer.observe(com_media, config);
+            }
+
+            /*jQuery(function(){
                 // Add copyright control to media thumbnails:
                 jQuery('.manager.thumbnails.thumbnails-media').each(function(){
 
@@ -95,10 +239,10 @@
 
                 });
 
-            });
+            });*/
 
         }
-	}
+    }
 
-	ready(image_meta.init);
+    ready(image_meta.init);
 })();

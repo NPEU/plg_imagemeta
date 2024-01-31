@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="plugin" group="system" version="3.2.0" method="upgrade">
+<extension type="plugin" group="system" method="upgrade">
 
     <name>PLG_SYSTEM_IMAGEMETA</name>
     <author>Andy Kirk</author>
     <authorEmail>andy.kirk@npeu.ox.ac.uk</authorEmail>
     <authorUrl>https://www.npeu.ox.ac.uk</authorUrl>
-    <creationDate>September 2019</creationDate>
-    <copyright>(C) NPEU 2019</copyright>
+    <creationDate>January 2024</creationDate>
+    <copyright>(C) NPEU 2024</copyright>
     <license>MIT License; see LICENSE.md</license>
 
     <!--  The version string is recorded in the components table -->
-    <version>1.2.0</version>
+    <version>2.0.0</version>
     <!-- The description is optional and defaults to the name -->
     <description>PLG_SYSTEM_IMAGEMETA_XML_DESCRIPTION</description>
 
     <updateservers>
         <!-- Note: No spaces or linebreaks allowed between the server tags -->
-        <server type="extension" name="NPEU: plg_imagemeta Update Site">https://raw.githubusercontent.com/NPEU/plg_imagemeta/master/update-manifest.xml</server>
+        <server type="extension" name="NPEU: plg_imagemeta Update Site">https://raw.githubusercontent.com/NPEU/plg_imagemeta/main/update-manifest.xml</server>
     </updateservers>
 
+    <namespace path="src">NPEU\Plugin\System\ImageMeta</namespace>
     <files>
-        <filename plugin="imagemeta">imagemeta.php</filename>
-        <filename>index.html</filename>
+        <folder plugin="imagemeta">src</folder>
         <folder>ajax</folder>
         <folder>assets</folder>
         <folder>language</folder>
+        <folder>services</folder>
     </files>
 
     <config>

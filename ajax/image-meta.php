@@ -1,11 +1,22 @@
 <?php
 //init Joomla Framework
-define('_JEXEC', 1);
 require_once '_auth.php';
 // Note: $app and $user vars created.
 // Allowed - continue:
 
+#echo '<pre>'; var_dump($_POST); echo '</pre>'; exit;
+
 require_once __DIR__ . '/vendor/autoload.php';
+/*
+require_once('PelJpeg.php');
+
+$jpeg = new PelJpeg($argv[1]);
+$ifd0 = $jpeg->getExif()->getTiff()->getIfd();
+$entry = $ifd0->getEntry(PelTag::IMAGE_DESCRIPTION);
+$entry->setValue('Edited by PEL');
+$jpeg->saveFile($argv[1]);
+*/
+use lsolesen\pel\Pel;
 use lsolesen\pel\PelDataWindow;
 use lsolesen\pel\PelJpeg;
 use lsolesen\pel\PelTiff;
@@ -13,6 +24,9 @@ use lsolesen\pel\PelTag;
 use lsolesen\pel\PelExif;
 use lsolesen\pel\PelIfd;
 use lsolesen\pel\PelEntryCopyright;
+
+use \Joomla\CMS\Response\JsonResponse;
+
 #Pel::setDebug(true);
 
 $message     = '';
@@ -27,7 +41,8 @@ function send_response($app, $success, $message, $return_data) {
     }
 
     $app->enqueueMessage($message, $message_type);
-    echo new JResponseJson($return_data, $message, !$success);
+    $r = new JsonResponse($return_data, $message, !$success);
+    echo $r;
     $app->close();
     exit;
 }
@@ -47,28 +62,34 @@ if (!file_exists($image_path)) {
 
 $data = new PelDataWindow(file_get_contents($image_path));
 
-
-#echo '<pre>'; var_dump($data); echo '</pre>'; exit;
+#echo '<pre>'; var_dump(PelJpeg::isValid($data)); echo '</pre>'; exit;
 
 if (PelJpeg::isValid($data)) {
     $jpeg = $file = new PelJpeg();
-    $jpeg->load($data);
+
+    try {
+        $jpeg->load($data);
+    } catch (Exception $e) {
+        #echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+    //echo '<pre>'; var_dump('TESTING'); echo '</pre>'; exit;
     $exif = $jpeg->getExif();
-
     #echo '<pre>'; var_dump($exif); echo '</pre>'; exit;
-
     // If no EXIF in image, create it
     if ($exif == null) {
         $exif = new PelExif();
         $jpeg->setExif($exif);
         #echo '<pre>'; var_dump($exif); echo '</pre>'; exit;
-        
+
         $tiff = new PelTiff();
         $exif->setTiff($tiff);
         #echo '<pre>'; var_dump($exif); echo '</pre>'; exit;
     } else {
         $tiff = $exif->getTiff();
     }
+} elseif (PelTiff::isValid($data)) {
+    $tiff = $file = new PelTiff();
+    $tiff->load($data);
 } else {
     $message = 'Unsupoorted format.';
     send_response($app, $success, $message, $return_data);
@@ -83,8 +104,8 @@ if($ifd0 == null) {
     $ifd0 = new PelIfd(PelIfd::IFD0);
     $tiff->setIfd($ifd0);
 }
-#echo '<pre>'; var_dump($exif); echo '</pre>'; exit;
-#echo '<pre>'; var_dump(PelTag::COPYRIGHT); echo '</pre>'; exit;
+#echo '<pre>'; var_dump($tiff); echo '</pre>'; exit;
+#echo '<pre>'; var_dump(PelTag::COPYRIGHT); echo '</pre>'; #exit;
 $copyright      = $ifd0->getEntry(PelTag::COPYRIGHT);
 #echo '<pre>'; var_dump($copyright); echo '</pre>'; exit;
 $copyright_text = '';
@@ -97,6 +118,7 @@ if ($copyright != null) {
 #echo '<pre>'; var_dump($_POST); echo '</pre>'; exit;
 #echo '<pre>'; var_dump(isset($_POST['copyright'])); echo '</pre>'; exit;
 
+#$_POST['copyright'] = 'Test';
 
 // Right so we've done the common stuff. Are we GETing or POSTing?
 if (!isset($_POST['copyright'])) {
@@ -109,16 +131,19 @@ if (!isset($_POST['copyright'])) {
 } else {
     // We're POSTing:
     $new_copyright = $_POST['copyright'];
-    
+
     // Validate new_copyright here:
     $valid = true;
     // @TODO
-    
+    #echo 'new_copyright<pre>'; var_dump($new_copyright); echo '</pre>'; #exit;
+    #echo 'copyright<pre>'; var_dump($copyright); echo '</pre>'; #xit;
+
     if ($valid) {
-        
+
         if ($copyright == null) {
 
-            $copyright = new PelEntryCopyright(PelTag::COPYRIGHT, $new_copyright);
+            #$copyright = new PelEntryCopyright(PelTag::COPYRIGHT, $new_copyright);
+            $copyright = new PelEntryCopyright($new_copyright, '');
             #echo '<pre>'; var_dump($copyright); echo '</pre>'; exit;
             // This will insert the newly created entry with the copyright into the IFD.
             $ifd0->addEntry($copyright);
@@ -126,17 +151,20 @@ if (!isset($_POST['copyright'])) {
             // The copyright is simply updated with the new copyright.
             $copyright->setValue($new_copyright);
         }
+
+        #echo '<pre>'; var_dump($copyright); echo '</pre>'; exit;
+
         //$copyright_text = (string) $copyright->getValue()[0];
         // Save the file:
         #$output = preg_replace('#\.?[\d]*\.jpg$#', '.' . time() . '.jpg', $image_path);
         $output = $image_path;
         $file->saveFile($output);
-        
+
         $message = 'Image info updated.';
         $success = true;
         send_response($app, $success, $message, $return_data);
         exit;
-        
+
         #echo '<pre>'; var_dump($copyright->getValue()[0]); echo '</pre>'; #exit;
         #echo '<pre>'; var_dump($output); echo '</pre>'; #exit;
     } else {

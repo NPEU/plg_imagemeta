@@ -1,9 +1,9 @@
 {
-    "name": "akirk/tinker",
-    "description": "Tinker",
+    "name": "akirk/imagemeta",
+    "description": "Imagemeta",
     "type": "project",
     "require": {
-        "lsolesen/pel": "^0.9.6"
+        "fileeye/pel": "0.9.*"
     },
     "license": "MIT",
     "authors": [
