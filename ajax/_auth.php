@@ -1,8 +1,8 @@
 <?php
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\Event\Dispatcher as EventDispatcher;
-
 
 #echo "<pre>\n"; var_dump($_GET); echo "</pre>\n";
 #echo "<pre>\n"; var_dump($_SERVER); echo "</pre>\n";exit;
@@ -110,10 +110,13 @@ $session = Factory::getSession();
 $user = Factory::getUser();
 $user = Factory::getApplication()->getIdentity();
 
-// Check if user has permission:
-if (!$user->authorise('core.create', 'com_media')) {
+#echo '<pre>'; var_dump($_SERVER['SERVER_ADDR']); echo '</pre>'; #exit;
+#echo '<pre>'; var_dump($_SERVER['REMOTE_ADDR']); echo '</pre>'; exit;
+// Check if user has permission or the request is coming from THIS server:
+if (!($user->authorise('core.create', 'com_media') || $_SERVER['SERVER_ADDR'] == $_SERVER['REMOTE_ADDR'])) {
+#if (()) {
     header('HTTP/1.0 403 Forbidden');
-    die(JText::_('JGLOBAL_AUTH_ACCESS_DENIED'));
+    die(Text::_('JGLOBAL_AUTH_ACCESS_DENIED'));
     return false;
 }
 // Allowed - continue:
