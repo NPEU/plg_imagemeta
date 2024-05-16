@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb52234a4d935769430f41428ee4cab2",
+    "content-hash": "d3fe2cf9f18d6663c4758c4a9afa6019",
     "packages": [
         {
-            "name": "lsolesen/pel",
-            "version": "0.9.12",
+            "name": "fileeye/pel",
+            "version": "0.9.20",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pel/pel.git",
-                "reference": "b95fe29cdacf9d36330da277f10910a13648c84c"
+                "url": "https://github.com/FileEye/pel.git",
+                "reference": "1675cbd44e89ff8f01b9576cf32ec1b4a4a67ede"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pel/pel/zipball/b95fe29cdacf9d36330da277f10910a13648c84c",
-                "reference": "b95fe29cdacf9d36330da277f10910a13648c84c",
+                "url": "https://api.github.com/repos/FileEye/pel/zipball/1675cbd44e89ff8f01b9576cf32ec1b4a4a67ede",
+                "reference": "1675cbd44e89ff8f01b9576cf32ec1b4a4a67ede",
                 "shasum": ""
             },
             "require": {
@@ -27,8 +27,9 @@
                 "ext-exif": "*",
                 "ext-gd": "*",
                 "php-coveralls/php-coveralls": ">2.4",
+                "phpstan/phpstan": "^1.4",
                 "squizlabs/php_codesniffer": ">3.5",
-                "symfony/phpunit-bridge": "^4 || ^5"
+                "symfony/phpunit-bridge": "^4 || ^5 || ^6"
             },
             "type": "library",
             "autoload": {
@@ -55,16 +56,16 @@
                 }
             ],
             "description": "PHP Exif Library. A library for reading and writing Exif headers in JPEG and TIFF images using PHP.",
-            "homepage": "http://pel.github.com/pel/",
+            "homepage": "https://github.com/FileEye/pel",
             "keywords": [
                 "exif",
                 "image"
             ],
             "support": {
-                "issues": "https://github.com/pel/pel/issues",
-                "source": "https://github.com/pel/pel/tree/0.9.12"
+                "issues": "https://github.com/FileEye/pel/issues",
+                "source": "https://github.com/FileEye/pel/tree/0.9.20"
             },
-            "time": "2022-02-18T13:20:54+00:00"
+            "time": "2023-06-20T07:10:35+00:00"
         }
     ],
     "packages-dev": [],

@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'lsolesen\\pel\\' => array($vendorDir . '/lsolesen/pel/src'),
+    'lsolesen\\pel\\' => array($vendorDir . '/fileeye/pel/src'),
 );
