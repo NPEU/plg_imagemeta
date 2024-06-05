@@ -131,7 +131,7 @@ const IMAGE_META = {
     var image_meta = {
 
         init: function () {
-            console.log('Image Meta');
+            //console.log('Image Meta');
 
             const com_media = document.getElementById('com-media');
             if (com_media) {
@@ -142,11 +142,16 @@ const IMAGE_META = {
                     observer.disconnect();
                     var elements_1 = com_media.querySelectorAll('.media-browser-image');
                     Array.prototype.forEach.call(elements_1, function (el, i) {
-                        //console.log(el);
-                        var t = el.querySelector('.media-browser-actions');
-                        t.insertAdjacentHTML('beforebegin', '<div class="media-browser-image-meta"><button type="button" class="action-toggle" aria-label="Manage attibution: newcastle-at-night.jpg" title="Manage attibution: newcastle-at-night.jpg" data-bs-toggle="modal" data-bs-target="#imageMetaModal" onclick="IMAGE_META.open(this);"><span class="image-browser-action  icon-copyright-h" aria-hidden="true"></span></button><!--v-if--></div>');
-                        //el.innerHTML += '<div class="media-browser-image-meta"><button type="button" class="action-toggle" aria-label="Manage attibution: newcastle-at-night.jpg" title="Manage attibution: newcastle-at-night.jpg"><span class="image-browser-action  icon-copyright-h" aria-hidden="true"></span></button><!--v-if--></div>'
-                        //el.innerHTML += '<div  class="media-browser-image-meta">TEST</div>';
+                        //console.log(el.querySelector('.media-browser-image-meta'));
+                        if (!el.querySelector('.media-browser-image-meta')) {
+                            //console.log(el);
+                            var info = el.querySelector('.media-browser-item-info');
+                            //console.log(info.title);
+                            var t = el.querySelector('.media-browser-actions');
+                            t.insertAdjacentHTML('beforebegin', '<div class="media-browser-image-meta"><button type="button" class="action-toggle" aria-label="Manage attibution: ' + info.title + '" title="Manage attibution: ' + info.title + '" data-bs-toggle="modal" data-bs-target="#imageMetaModal" onclick="IMAGE_META.open(this);"><span class="image-browser-action  icon-copyright-h" aria-hidden="true"></span></button><!--v-if--></div>');
+                            //el.innerHTML += '<div class="media-browser-image-meta"><button type="button" class="action-toggle" aria-label="Manage attibution: newcastle-at-night.jpg" title="Manage attibution: newcastle-at-night.jpg"><span class="image-browser-action  icon-copyright-h" aria-hidden="true"></span></button><!--v-if--></div>'
+                            //el.innerHTML += '<div  class="media-browser-image-meta">TEST</div>';
+                        }
                     });
                     observer.observe(com_media, config);
                 };
