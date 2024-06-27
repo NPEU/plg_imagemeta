@@ -1,3 +1,4 @@
+/*
 .copyright-control {
     position: absolute;
     left: calc(50% - 17px);
@@ -11,7 +12,7 @@
     z-index: 10;
     font-size: 1.253em;
 }
-
+*/
 
 
 .media-browser-actions.active {
@@ -23,7 +24,11 @@
     padding: 2px;
     position: absolute;
     overflow: hidden;
-    bottom: 40px;
+    bottom: 32px;
+}
+
+.media-browser-image.is_file .media-browser-image-meta{
+    display: none;
 }
 
 .media-browser-image-meta > button {

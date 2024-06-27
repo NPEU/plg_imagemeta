@@ -84,10 +84,13 @@ class ImageMeta extends CMSPlugin implements SubscriberInterface
             return; // Only run in com_media
         }
 
+        /*
+        This doesn't work too well because the media manger uses JS to navgiate, so it isn't reliable
+        KEEP FOR REFERENCE
         $path = $app->input->get('path', '', 'string');
         if (strpos($path, 'local-assets:/downloads/') === 0) {
             return; // Do not run in downloads folder
-        }
+        }*/
 
         // Only run this in the applicable folder:
         $folder = explode('/', $app->input->get('folder', '', 'path'));
