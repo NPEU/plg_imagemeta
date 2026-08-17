@@ -102,12 +102,22 @@ class ImageMeta extends CMSPlugin implements SubscriberInterface
         $dir = str_replace(JPATH_ROOT, '', dirname(dirname(__DIR__)));
 
         $document = Factory::getDocument();
-        //$document->addStyleSheet($dir . '/assets/vendor/webui-popover-1.2.19/jquery.webui-popover.min.css');
-        $document->addStyleSheet($dir . '/assets/css/image-meta.css');
+        $plugin_folder = str_replace(JPATH_ROOT . '/', '', dirname(dirname(__DIR__)));
 
-        $document->addScript($dir . '/assets/vendor/showdown-1.9.0/showdown.min.js');
+        if ($document) {
+            $wa = $document->getWebAssetManager();
+            $wa->registerAndUseStyle('plg_assets', $plugin_folder . '/assets/css/image-meta.css');
+            $wa->registerAndUseScript('plg_assets', $plugin_folder . '/assets/vendor/showdown-1.9.0/showdown.min.js');
+            $wa->registerAndUseScript('plg_assets', $plugin_folder . '/assets/js/image-meta.js');
+        }
+
+
+        //$document->addStyleSheet($dir . '/assets/vendor/webui-popover-1.2.19/jquery.webui-popover.min.css');
+        #$document->addStyleSheet($dir . '/assets/css/image-meta.css');
+
+        #$document->addScript($dir . '/assets/vendor/showdown-1.9.0/showdown.min.js');
         //$document->addScript($dir . '/assets/vendor/webui-popover-1.2.19/jquery.webui-popover.min.js');
-        $document->addScript($dir . '/assets/js/image-meta.js');
+        #$document->addScript($dir . '/assets/js/image-meta.js');
 
         $modal_body = [
             '<div class="p-3">',
