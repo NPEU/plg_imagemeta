@@ -106,9 +106,9 @@ class ImageMeta extends CMSPlugin implements SubscriberInterface
 
         if ($document) {
             $wa = $document->getWebAssetManager();
-            $wa->registerAndUseStyle('plg_assets', $plugin_folder . '/assets/css/image-meta.css');
-            $wa->registerAndUseScript('plg_assets', $plugin_folder . '/assets/vendor/showdown-1.9.0/showdown.min.js');
-            $wa->registerAndUseScript('plg_assets', $plugin_folder . '/assets/js/image-meta.js');
+            $wa->registerAndUseStyle('plg_imagemeta.style', $plugin_folder . '/assets/css/image-meta.css');
+            $wa->registerAndUseScript('plg_imagemeta.script-showdown', $plugin_folder . '/assets/vendor/showdown-1.9.0/showdown.min.js');
+            $wa->registerAndUseScript('plg_imagemeta.script', $plugin_folder . '/assets/js/image-meta.js');
         }
 
 
